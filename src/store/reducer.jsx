@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 
 const initialState={
     user:[
@@ -155,4 +155,6 @@ const reducer = (state=initialState,action) =>{
 
 }
 
-export default createStore(reducer)
+export default configureStore({
+  reducer,
+})
