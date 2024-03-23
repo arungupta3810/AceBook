@@ -1,11 +1,10 @@
 import "../src/Assets/common.css"
-import Navbar from "./Components/Navbar";
 import Layout from "./Layout";
-import Home from "./Pages/Home";
 import routes from "./routes"
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/reducer"
+import ErrorBoundary from "./Components/Error";
 
 function App() {
 
@@ -18,12 +17,12 @@ function App() {
         e.route==="common"? <Route
          exact 
          path={e.path}
-         element={<Layout component={<e.component/>}/>}
+         element={<ErrorBoundary ><Layout component={<e.component/>}/> </ErrorBoundary>}
         />:
         <Route
          exact 
          path={e.path}
-         element={<e.component/>}
+         element={<ErrorBoundary ><e.component/></ErrorBoundary>}
         />
         )}
         </Routes>

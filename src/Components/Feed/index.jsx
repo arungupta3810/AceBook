@@ -2,13 +2,14 @@ import React from 'react'
 import "./index.css"
 import Share from '../Share'
 import Post from '../Post'
-import { postDetails } from '../Sidebar/helper';
+import { useSelector } from 'react-redux'
 
 const Feed = () => {
+  const posts = useSelector((state) => state.post)
   return (
     <div className='feed col-md-12'>
       <Share/>
-      {postDetails?.map(e=>
+      {posts?.map(e=>
         <Post 
         likes={e.likes}
         reaction={e.reaction}
@@ -22,4 +23,4 @@ const Feed = () => {
   )
 }
 
-export default Feed
+export default React.memo(Feed)

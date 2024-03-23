@@ -1,18 +1,20 @@
-import React from 'react'
-import Navbar from '../Components/Navbar'
-import Sidebar from '../Components/Sidebar'
-import "./index.css"
+import React from "react";
+import "./index.css";
+import ErrorBoundary from "../Components/Error";
+
+const Navbar = React.lazy(() => import("../Components/Navbar"));
+const Sidebar = React.lazy(() => import("../Components/Sidebar"));
 
 const Layout = (props) => {
   return (
-    <React.Fragment>
-    <Navbar/>
-    <Sidebar/>
-    <div className="main-content">
-   {props?.component}
-   </div>
-    </React.Fragment>
-  )
-}
+    <ErrorBoundary key={1}>
+      <React.Fragment>
+        <Navbar />
+        <Sidebar />
+        <div className="main-content">{props?.component}</div>
+      </React.Fragment>
+    </ErrorBoundary>
+  );
+};
 
-export default Layout
+export default Layout;
